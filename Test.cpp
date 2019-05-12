@@ -19,6 +19,8 @@ int main() {
 
 		testcase.setname("range-test")
 		.CHECK_EQUAL(range(5,9),"5,6,7,8")
+		.CHECK_EQUAL(range(5,5),"5")
+		.CHECK_EQUAL(range(5,13),"5,6,7,8,9,10,11,12")
 		.CHECK_EQUAL(range(6.6,7.6),"6.6")
 		.CHECK_EQUAL(range('a','d'),"a,b,c")
 		.CHECK_EQUAL(range(':','?'),":,;,<,=,>")
@@ -45,6 +47,8 @@ int main() {
 
 		testcase.setname("chin-test")
 		.CHECK_EQUAL(chain(range(1,4),range(5,9)),"1,2,3,5,6,7,8")
+		.CHECK_EQUAL(chain(range(1,4),range(5,11)),"1,2,3,5,6,7,8,9,10")
+		.CHECK_EQUAL(chain(range(1.1,2.1),range(7,9)),"1,7,8")
 		.CHECK_EQUAL(chain(range(-1.3,4.3),range(5,9)),"-1.3,0.3,1.3,2.3,3.3,5,4,3,6,7,8")
 		.CHECK_EQUAL(chain(range('a','d'),string("hello")),"a,b,c,h,e,l,l,o")	
 		.CHECK_EQUAL(chain(range(':','?'),string("hello")),":,;,<,=,>,h,e,l,l,o")
@@ -66,6 +70,7 @@ int main() {
 		.CHECK_EQUAL(chain(range(':','<'),string("C++")),":,;,C,+");
 		
 		testcase.setname("zip-test")
+		.CHECK_EQUAL(zip(range(1,6),string("C++")),"1,h 2,e 3,l 4,l 5,o")
 		.CHECK_EQUAL(zip(range(1,6),string("C++")),"1,h 2,e 3,l 4,l 5,o")
 		.CHECK_EQUAL(zip(chain(range(':','?'),string("C++"))),range(0,10),":,0 ;,1 <,2 =,3 >,4 h,5 e,6 l,7 l,8 o,9")
 		.CHECK_EQUAL(zip(range(-9,-5),range(5,9),"-9,5 -8,6 -7,7 -6,8")
@@ -91,6 +96,7 @@ int main() {
 
 		testcase.setname("product-test")
 		.CHECK_EQUAL(product(range(1,4),string("helo")),"1,h 1,e 1,l 1,o 2,h 2,e 2,l 2,o 3,h 3,e 3,l 3,o")
+		.CHECK_EQUAL(product(range(1,5),string("hi")),"1,h 1,i 2,h 2,i 3,h 3,i 4,h 4,i ")
 		.CHECK_EQUAL(product(range('a',c),chain(range(1,4),range(0,2))),"a,1 a,2 a,3 a,0 a,1 b,1 b,2 b,3 b,0 b,1")
 		.CHECK_EQUAL(product(range(:,<),zip(string("hlool"),string("elwrd"))),":,h,e :,l,l :,o,w :,o,r :,l,d ;,h,e ;,l,l ;,o,w ;,o,r ;,l,d")   
 		.CHECK_EQUAL(product(range(1,4),string("helo")),"1,h 1,e 1,l 1,o 2,h 2,e 2,l 2,o 3,h 3,e 3,l 3,o")
@@ -141,3 +147,5 @@ int main() {
 	cout << "Your grade is: "  << grade << endl;
 	return 0;
 }
+			     }			    
+			     
